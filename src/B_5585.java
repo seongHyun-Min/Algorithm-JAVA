@@ -5,7 +5,6 @@ import java.util.*;
 //거스름돈 백준 5585번
 public class B_5585{
 
-
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
