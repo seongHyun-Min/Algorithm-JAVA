@@ -23,9 +23,7 @@ public class B_1092 {
         //배열 내림차순 정렬
         Collections.sort(crane, Collections.reverseOrder());
         Collections.sort(box, Collections.reverseOrder());
-
         int result =0;
-
         if (crane.get(0) <box.get(0)) System.out.println(-1);
         else {
             while(!box.isEmpty()) {
@@ -42,6 +40,6 @@ public class B_1092 {
                 result ++;
             }
             System.out.println(result);
-        }       
+        }
     }
 }
