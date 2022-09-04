@@ -42,6 +42,6 @@ public class B_1092 {
                 result ++;
             }
             System.out.println(result);
-        }
+        }       
     }
 }
