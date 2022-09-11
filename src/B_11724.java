@@ -51,7 +51,7 @@ public class B_11724 {
         for(int i=0; i<array.get(n).size(); i++){
             int next = array.get(n).get(i);
             if(visitied[next] == false){
-                visitied[next] = true;
+                visitied[next] = true; // 이거 없어도 되는거 아닌가????
                 dfs(next);
             }
         }
