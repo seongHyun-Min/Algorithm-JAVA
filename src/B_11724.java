@@ -45,7 +45,6 @@ public class B_11724 {
 
     }
 
-
     public static void dfs(int n){
         visitied[n] = true;
         for(int i=0; i<array.get(n).size(); i++){
