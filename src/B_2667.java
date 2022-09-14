@@ -22,8 +22,7 @@ public class B_2667 {
         ArrayList<Integer> answer = new ArrayList<>();
         int cnt =0; // 총 단지수
         for(int i=0; i<N; i++){
-            st = new StringTokenizer(br.readLine());
-            String str = st.nextToken();
+            String str = br.readLine();
             for(int j=0; j<N; j++){
                 arr[i][j] = Integer.parseInt(str.substring(j, j+1));
             }
