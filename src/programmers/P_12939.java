@@ -15,10 +15,11 @@ public class P_12939 {
 
             String answer = String.valueOf(min)+" "+String.valueOf(max);
             return answer;
+
         }
 
     public static void main(String[] args) throws IOException { //테스트 코드
-        System.out.println(solution("1 -2 3 4"));
+        System.out.println((long)Math.sqrt(25));
 
 
     }

@@ -1,10 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class B_1012 {
+public class B_1012{
     static int[] dx = {1, 0, -1, 0}; //인접리스트 dx 생성
     static int[] dy = {0, 1, 0 ,-1}; //인접 리스트 dy 생성 //for문 4번돌린다고 했을때 (1,0) ->우로 이동, (0,1) -> 하로 이동, (-1, 0) 좌로 이동, (0, -1) 상으로 이동
     static int[][] arr; //2차원 배열 초기화
