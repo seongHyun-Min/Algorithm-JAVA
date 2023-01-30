@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class B_3055 {
+
     static String str = "KAKTUS";
     static int R, C;
     static int[] dx = {1, 0, -1, 0};
