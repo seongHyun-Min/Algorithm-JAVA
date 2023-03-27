@@ -34,7 +34,7 @@ public class P_1954 {
 
                 if (nx < 0 || nx>=N || ny < 0 || ny>= N || arr[nx][ny] != 0) {
                     //인덱스 아웃이 나거나 배열에 0이 아닌 값이 있다면 방향전환
-                    // 0 1 2 3 0 1 2 3
+                    // 0 1 2 3 0 1 2 3`
                     dir = (dir + 1) % 4;
                     nx = x + dx[dir];
                     ny = y + dy[dir];

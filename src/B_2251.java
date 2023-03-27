@@ -1,69 +1,83 @@
+import javax.sound.midi.Receiver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class B_2251 {
+class B_2251 {
+    static int[] sender = {0, 0, 1, 1, 2, 2}; // 0-> 1, 0-> 2 , 1 -> 0 , 1->2, 2-> 0 , 2->1 갈수 있는 모든 경우의수
+    static int[] recevier = {1, 2, 0, 2, 0, 1};
+    static boolean[][] visited;
+    static ArrayList<Integer> answer;
 
-    static class AB{
-        int A;
-        int B;
-        public AB(int A, int B){
-            this.A = A;
-            this.B = B;
-        }
-    }
-    static int[] Sender = {0, 0, 1, 1, 2, 2};
-    static int[] Receiver = {1, 2, 0, 2, 0, 1};
-    static boolean[][] visited; //A B의 무게가 있으면 C는 자동으로 나오므로 A B 방문 배열만 선언
-    static int[] now;
-    static boolean[] answer;
+    static Queue<Bottle> q = new LinkedList<>();
+
+    static int[] max ;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        now = new int[3];
-        now[0] = Integer.parseInt(st.nextToken());
-        now[1] = Integer.parseInt(st.nextToken());
-        now[2] = Integer.parseInt(st.nextToken());
+        max = new int[3];
+        max[0] = Integer.parseInt(st.nextToken());
+        max[1] = Integer.parseInt(st.nextToken());
+        max[2] = Integer.parseInt(st.nextToken());
 
+        answer = new ArrayList<>();
         visited = new boolean[201][201];
-        answer = new boolean[201];
 
-        Queue<AB> q = new LinkedList<>();
-        q.offer(new AB(0, 0)); // 처음 시작하는 물통의 크기는 0
+        BFS();
+        Collections.sort(answer);
+        for(int i: answer){
+            System.out.print(i + " ");
+        }
+
+    }
+    static public void BFS(){
+        q.add(new Bottle(0, 0, max[2]));
         visited[0][0] = true;
-        answer[now[2]] = true;
-
-        while (!q.isEmpty()) {
-            AB tmp = q.poll();
-            int A = tmp.A;
-            int B = tmp.B;
-            int C = now[2] - A - B;
-            for (int i = 0; i < 6; i++) {
+        answer.add(max[2]);
+        while(!q.isEmpty()){
+            Bottle current = q.poll();
+            int A = current.a;
+            int B = current.b;
+            int C = current.c;
+            for(int k=0; k<6; k++){
                 int[] next = {A, B, C};
-                next[Receiver[i]] += next[Sender[i]];
-                next[Sender[i]] = 0;
-                if (next[Receiver[i]] > now[Receiver[i]]) { // 물이 최대값 보다 넘친다면
-                    //초과하는 만큼 다시 이전 물통에 넣어줌
-                    next[Sender[i]] = next[Receiver[i]] - now[Receiver[i]];
-                    next[Receiver[i]] = now[Receiver[i]]; //초과한 물통은 최대로 채워준
+                //    static int[] sender = {0, 0, 1, 1, 2, 2}; // 0-> 1, 0-> 2 , 1 -> 0 , 1->2, 2-> 0 , 2->1 갈수 있는 모든 경우의수
+                //    static int[] recevier = {1, 2, 0, 2, 0, 1};
+                next[recevier[k]] += next[sender[k]]; //k=0 이면 0-> 1 A -> B로 감
+                next[sender[k]] =0;
+                if(next[recevier[k]] > max[recevier[k]]){
+                    next[sender[k]] = next[recevier[k]] - max[recevier[k]]; // 넘친물을 다시 sender에 넣어줌
+                    next[recevier[k]] =max[recevier[k]];
                 }
-                if (!visited[next[0]][next[1]]) {
+                if(!visited[next[0]][next[1]]){
                     visited[next[0]][next[1]] = true;
-                    q.offer(new AB(next[0], next[1]));
-                    if (next[0] == 0) { // 첫번쨰 물통이 비어잇을때만 넣어줘야하니까
-                        answer[next[2]] = true;
+                    q.offer(new Bottle(next[0],next[1],next[2]));
+                    if(next[0] ==0){ //A가 0일 때
+                        answer.add(next[2]);
+
                     }
+
                 }
             }
-        }
-        for(int i=0; i<answer.length; i++){ //boolean 배열을 활용해 인덱스로 출력
-            if(answer[i]) System.out.print(i +" ");
         }
 
 
     }
+
+
+    static public class Bottle {
+        int a;
+        int b;
+
+        int c;
+
+        public Bottle(int a, int b, int c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+    }
 }
+

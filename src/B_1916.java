@@ -86,6 +86,7 @@ public class B_1916 {
             visited[tmp.endNode] =true;
 
 
+
             for(Node e: arr.get(tmp.endNode)) {
                 if(dist[e.endNode] > dist[tmp.endNode] + e.weight){
                     dist[e.endNode] = dist[tmp.endNode] +e.weight;

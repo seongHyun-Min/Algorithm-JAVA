@@ -53,6 +53,7 @@ public class B_1197 {//최소 스패닝 트리
             int w = Integer.parseInt(st.nextToken());
             arr.get(u).add(new Node(v, w));
             arr.get(v).add(new Node(u, w));
+
         }
         visited = new boolean[N + 1];
         prim(1); //어떠한 노드로 잡아도 상관없이 Tmst가 나오는 알고리즘

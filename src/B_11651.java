@@ -10,6 +10,7 @@ public class B_11651 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
+
         StringTokenizer st;
         int[][] arr = new int[N][2];
         //
